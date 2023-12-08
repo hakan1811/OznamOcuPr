@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "758796447184",
+    "project_id": "pushnotifyprochot",
+    "storage_bucket": "pushnotifyprochot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758796447184:android:e23672caff1917d46d1dd5",
+        "android_client_info": {
+          "package_name": "sk.kusnierr.pushnotifyprochot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnR1Hc57shfY0e26KWn7emjjNO-JukD9k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

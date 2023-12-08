@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <include
+        layout="@layout/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kontakty:"
+        android:textAlignment="viewStart"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_local_post_offic" />
+
+        <TextView
+            android:id="@+id/textAdresa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="100px"
+            android:text="Adresa"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textOU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="100px"
+            android:text="Obecný úrad Prochot" />
+
+        <TextView
+            android:id="@+id/textProch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="100px"
+            android:text="Prochot 271" />
+
+        <TextView
+            android:id="@+id/textPSC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="100px"
+            android:text="966 04 Horná Ždaňa" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20px"
+            android:src="@drawable/ic_local_phone" />
+
+        <TextView
+            android:id="@+id/textTelef"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="100px"
+            android:layout_marginVertical="20px"
+            android:text="Tel.: 045/ 67 26 838"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20px"
+            android:src="@drawable/ic_alternate_email" />
+
+        <TextView
+            android:id="@+id/textEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="100px"
+            android:layout_marginVertical="20px"
+            android:autoLink="web|email"
+            android:text="obecprochot@prochot.dcom.sk"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20px"
+            android:src="@drawable/ic_web" />
+
+        <TextView
+            android:id="@+id/textWeb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="100px"
+            android:layout_marginVertical="20px"
+            android:autoLink="web|email"
+            android:text="www.prochot.eu"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20px"
+            android:src="@drawable/ic_lock_clock" />
+
+        <TextView
+            android:id="@+id/textOtHodiny"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="100px"
+            android:layout_marginVertical="20px"
+            android:text="Pracovné hodiny OÚ"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textPon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100px"
+        android:text="Pondelok:     7:00 – 15:00" />
+
+    <TextView
+        android:id="@+id/textUt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100px"
+        android:text="Utorok:          7:00 – 15:00" />
+
+    <TextView
+        android:id="@+id/textSt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100px"
+        android:text="Streda:          7:00 – 15:00" />
+
+    <TextView
+        android:id="@+id/textStv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100px"
+        android:text="Štvrtok:         7:00 – 15:00" />
+
+    <TextView
+        android:id="@+id/textPia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100px"
+        android:text="Piatok:          7:00 – 15:00" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20px"
+            android:src="@drawable/ic_person_starosta" />
+
+        <TextView
+            android:id="@+id/textStarosta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="100px"
+            android:layout_marginVertical="20px"
+            android:text="Starosta obce"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textMeno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="100px"
+            android:layout_marginVertical="80px"
+            android:text="Ing. Martina Rozenbergová" />
+    </RelativeLayout>
+</LinearLayout>

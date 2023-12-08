@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title=""
+        android:id="@+id/home"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_home"/>
+    <item
+        app:showAsAction="always"
+        android:icon="@drawable/baseline_menu_24"
+        android:title="">
+        <menu>
+            <item
+                android:title="Oznamy"
+                android:id="@+id/oznamy"
+                app:showAsAction="never"
+                />
+            <item
+                android:title="Kontakt"
+                android:id="@+id/kontakt"
+                app:showAsAction="never"
+                />
+
+        </menu>
+    </item>
+
+
+</menu>
