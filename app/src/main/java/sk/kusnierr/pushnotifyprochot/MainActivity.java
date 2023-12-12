@@ -156,6 +156,12 @@ import java.util.Locale;
             startActivity(new Intent(MainActivity.this,Kontakty.class));
             return true;
         }
+            if (item_id == R.id.odbery){
+                Toast.makeText(this,"Vybral si odbery",Toast.LENGTH_SHORT).show();
+                setContentView(R.layout.activity_odbery);
+                startActivity(new Intent(MainActivity.this,Odbery.class));
+                return true;
+            }
         if (item_id == R.id.home){
             Toast.makeText(this,"Návrat na domácu obrazovku",Toast.LENGTH_SHORT).show();
             //setContentView(R.layout.activity_main);

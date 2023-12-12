@@ -17,9 +17,13 @@
         android:theme="@style/Theme.OznamOcuPr"
         tools:targetApi="31">
         <activity
+            android:name=".Odbery"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".Detail"
             android:exported="false"
-            android:parentActivityName=".Oznamy"/>
+            android:parentActivityName=".Oznamy" />
         <activity
             android:name=".Kontakty"
             android:exported="false"
