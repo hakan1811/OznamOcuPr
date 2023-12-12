@@ -15,16 +15,19 @@
             <item
                 android:title="Oznamy"
                 android:id="@+id/oznamy"
+                android:icon="@drawable/baseline_message_24"
                 app:showAsAction="never"
                 />
             <item
                 android:title="Odbery"
                 android:id="@+id/odbery"
+                android:icon="@drawable/baseline_subscriptions_24"
                 app:showAsAction="never"
                 />
             <item
                 android:title="Kontakt"
                 android:id="@+id/kontakt"
+                android:icon="@drawable/baseline_contact_mail_24"
                 app:showAsAction="never"
                 />
 

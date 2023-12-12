@@ -37,17 +37,17 @@ import java.util.Locale;
     int count = 0;
 
 
-     BroadcastReceiver notificationReciver = new BroadcastReceiver() {
+  /*   BroadcastReceiver notificationReciver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             count++;
             if (intent!=null && intent.getAction() != null){
                 if (intent.getAction().equals(NotificationService.ACTION_NOTIFICATION_RECIVED)){
-                    /*if (count == 1) {
+                    *//*if (count == 1) {
                         CustomModel customModel = new CustomModel(-1, intent.getStringExtra("date"), intent.getStringExtra("title"), intent.getStringExtra("body"));
                         DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
                         boolean b = dataBaseHelper.addOne(customModel);
-                    }*/
+                    }*//*
                     Date.setText(intent.getStringExtra("date"));
                     Date.setGravity(Gravity.LEFT);
                     Title.setText(intent.getStringExtra("title"));
@@ -58,7 +58,7 @@ import java.util.Locale;
             }
 
         }
-    };
+    };*/
         @Override
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,27 +88,20 @@ import java.util.Locale;
             }
 
 
-            IntentFilter intentFilter = new IntentFilter();
+            /*IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(NotificationService.ACTION_NOTIFICATION_RECIVED);
-            LocalBroadcastManager.getInstance(this).registerReceiver(notificationReciver, intentFilter);
+            LocalBroadcastManager.getInstance(this).registerReceiver(notificationReciver, intentFilter);*/
 
         Title = (TextView)findViewById(R.id.textPredmet);
         Message = (TextView)findViewById(R.id.textMessage);
         Date = (TextView)findViewById(R.id.textDate);
         // nastavit domovsku obrazovku
-            Bundle extras = getIntent().getExtras();
-            if (extras == null){
+
                 Date.setGravity(Gravity.CENTER);
                 Title.setGravity(Gravity.CENTER);
                 Date.setText("Dnes je " + currentDate1 + "." );
-                Title.setText("Vitajte v testovacej verzii aplikácie eRozhlas OÚ Prochot.");}
-            else {
-                Title.setGravity(Gravity.LEFT);
-                Date.setText(getIntent().getStringExtra("date"));
-                Title.setText(getIntent().getStringExtra("title"));
-                Message.setText(getIntent().getStringExtra("body"));
-                extras.clear();
-            }
+                Title.setText("Vitajte v testovacej verzii aplikácie eRozhlas OÚ Prochot.");
+
 
 
         OneSignal.setNotificationOpenedHandler(new OneSignal.OSNotificationOpenedHandler() {
@@ -116,20 +109,20 @@ import java.util.Locale;
             @Override
             public void notificationOpened(OSNotificationOpenedResult osNotificationOpenedResult) {
 
-                    Intent intent = new Intent(MainActivity.this, Detail.class);
-                    startActivity(intent);
+
                     OSNotification notification = osNotificationOpenedResult.getNotification();
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Date.setText(currentDate);
-                            Date.setGravity(Gravity.LEFT);
-                            Title.setText(notification.getTitle());
-                            Title.setGravity(Gravity.LEFT);
-                            Message.setText(notification.getBody());
+
                            CustomModel customModel = new CustomModel(-1,currentDate,notification.getTitle(),notification.getBody());
                            DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
                             boolean b = dataBaseHelper.addOne(customModel);
+                            Intent intent = new Intent(MainActivity.this, Detail.class);
+                            intent.putExtra("date", currentDate);
+                            intent.putExtra("title", notification.getTitle());
+                            intent.putExtra("body", notification.getBody());
+                            startActivity(intent);
 
                         }
                     });
@@ -146,12 +139,12 @@ import java.util.Locale;
         return true;
     }
 
-     @Override
+   /*  @Override
         protected void onDestroy() {
             super.onDestroy();
            LocalBroadcastManager.getInstance(this).unregisterReceiver(notificationReciver);
            count = 0;
-        }
+        }*/
 
         @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

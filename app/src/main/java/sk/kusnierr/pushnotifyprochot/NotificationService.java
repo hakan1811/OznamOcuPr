@@ -30,11 +30,11 @@ public class NotificationService  implements OneSignal.OSRemoteNotificationRecei
     @Override
     public void remoteNotificationReceived(Context context, OSNotificationReceivedEvent osNotificationReceivedEvent) {
         OSNotification notification = osNotificationReceivedEvent.getNotification();
-       Intent intent = new Intent(NotificationService.ACTION_NOTIFICATION_RECIVED);
+       /*Intent intent = new Intent(NotificationService.ACTION_NOTIFICATION_RECIVED);
        intent.putExtra("date",currentDate);
        intent.putExtra("title", notification.getTitle());
        intent.putExtra("body",notification.getBody());
-       LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+       LocalBroadcastManager.getInstance(context).sendBroadcast(intent);*/
         osNotificationReceivedEvent.complete(notification);
 
 
