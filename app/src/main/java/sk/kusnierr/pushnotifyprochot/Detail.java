@@ -52,7 +52,7 @@ public class Detail extends MainActivity {
                         CustomModel customModel = new CustomModel(-1,currentDate,notification.getTitle(),notification.getBody());
                         DataBaseHelper dataBaseHelper = new DataBaseHelper(Detail.this);
                         boolean b = dataBaseHelper.addOne(customModel);
-                        Intent intent = new Intent(Detail.this, MainActivity.class);
+                        Intent intent = new Intent(Detail.this, Detail.class);
                         intent.putExtra("date", currentDate);
                         intent.putExtra("title", notification.getTitle());
                         intent.putExtra("body", notification.getBody());

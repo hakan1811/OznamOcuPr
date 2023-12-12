@@ -116,7 +116,7 @@ import java.util.Locale;
             @Override
             public void notificationOpened(OSNotificationOpenedResult osNotificationOpenedResult) {
 
-                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                    Intent intent = new Intent(MainActivity.this, Detail.class);
                     startActivity(intent);
                     OSNotification notification = osNotificationOpenedResult.getNotification();
                     runOnUiThread(new Runnable() {
