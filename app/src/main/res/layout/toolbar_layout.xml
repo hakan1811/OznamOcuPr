@@ -14,7 +14,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:logo="@mipmap/ic_logo_prochot_new_round"
-        app:title="   Obec PROCHOT"
+        app:title="eRozhlas OÚ Prochot"
         app:titleTextColor="#FAE100">
 
 

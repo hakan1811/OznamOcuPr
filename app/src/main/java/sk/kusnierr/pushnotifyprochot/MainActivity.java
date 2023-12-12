@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -31,48 +32,62 @@ import java.util.Locale;
 
     public class MainActivity extends AppCompatActivity {
     TextView Title,Message,Date;
+    int count = 0;
 
-    /*private BroadcastReceiver notificationReciver = new BroadcastReceiver() {
+
+     BroadcastReceiver notificationReciver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            count++;
             if (intent!=null && intent.getAction() != null){
                 if (intent.getAction().equals(NotificationService.ACTION_NOTIFICATION_RECIVED)){
-                    CustomModel customModel = new CustomModel(-1,intent.getStringExtra("date"),intent.getStringExtra("title"),intent.getStringExtra("body"));
-                    DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
-                    boolean b = dataBaseHelper.addOne(customModel);
+                    /*if (count == 1) {
+                        CustomModel customModel = new CustomModel(-1, intent.getStringExtra("date"), intent.getStringExtra("title"), intent.getStringExtra("body"));
+                        DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
+                        boolean b = dataBaseHelper.addOne(customModel);
+                    }*/
+                    Date.setText(intent.getStringExtra("date"));
+                    Date.setGravity(Gravity.LEFT);
+                    Title.setText(intent.getStringExtra("title"));
+                    Title.setGravity(Gravity.LEFT);
+                    Message.setText(intent.getStringExtra("body"));
+
                 }
             }
 
         }
-    };*/
+    };
         @Override
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageView  imageLogo = (ImageView) findViewById(R.id.imageViewLogo);
-        imageLogo.setAlpha(50);
+        //  imageLogo = (ImageView) findViewById(R.id.imageViewLogo);
+        //.setAlpha(50);
         Toolbar tb = (Toolbar)findViewById(R.id.toolbar);
         String currentDate = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault()).format(new Date());
         String currentDate1 = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(new Date());
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+            /*SharedPreferences settings = getApplicationContext().getSharedPreferences("Push_Values", 0);
+            CustomModel customModel = new CustomModel(-1, settings.getString("date",String.valueOf(0)), settings.getString("title", String.valueOf(0)), settings.getString("body", String.valueOf(0)));
+            DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
+            boolean b = dataBaseHelper.addOne(customModel);*/
+
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(NotificationService.ACTION_NOTIFICATION_RECIVED);
+            LocalBroadcastManager.getInstance(this).registerReceiver(notificationReciver, intentFilter);
+
         Title = (TextView)findViewById(R.id.textPredmet);
         Message = (TextView)findViewById(R.id.textMessage);
         Date = (TextView)findViewById(R.id.textDate);
-            IntentFilter intentFilter = new IntentFilter();
-            intentFilter.addAction(NotificationService.ACTION_NOTIFICATION_RECIVED);
-            //registerReceiver(notificationReciver,intentFilter);
-
-            //LocalBroadcastManager.getInstance(this).registerReceiver(notificationReciver,intentFilter);
-
-
         // nastavit domovsku obrazovku
             Bundle extras = getIntent().getExtras();
             if (extras == null){
                 Date.setGravity(Gravity.CENTER);
                 Title.setGravity(Gravity.CENTER);
                 Date.setText("Dnes je " + currentDate1 + "." );
-                Title.setText("Vitajte v testovacej verzii aplikácie Oznamy OÚ Prochot.");}
+                Title.setText("Vitajte v testovacej verzii aplikácie eRozhlas OÚ Prochot.");}
             else {
                 Title.setGravity(Gravity.LEFT);
                 Date.setText(getIntent().getStringExtra("date"));
@@ -80,6 +95,8 @@ import java.util.Locale;
                 Message.setText(getIntent().getStringExtra("body"));
                 extras.clear();
             }
+
+
         OneSignal.setNotificationOpenedHandler(new OneSignal.OSNotificationOpenedHandler() {
             //OSNotificationOpenedResult osNotificationOpenedResult = new OSNotificationOpenedResult(str);
             @Override
@@ -96,8 +113,8 @@ import java.util.Locale;
                             Title.setText(notification.getTitle());
                             Title.setGravity(Gravity.LEFT);
                             Message.setText(notification.getBody());
-                            CustomModel customModel = new CustomModel(-1,currentDate,notification.getTitle(),notification.getBody());
-                            DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
+                           CustomModel customModel = new CustomModel(-1,currentDate,notification.getTitle(),notification.getBody());
+                           DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
                             boolean b = dataBaseHelper.addOne(customModel);
 
                         }
@@ -109,17 +126,17 @@ import java.util.Locale;
         });
 
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_item,menu);
         return true;
     }
 
-        @Override
+     @Override
         protected void onDestroy() {
             super.onDestroy();
-           // LocalBroadcastManager.getInstance(this).unregisterReceiver(notificationReciver);
+           LocalBroadcastManager.getInstance(this).unregisterReceiver(notificationReciver);
+           count = 0;
         }
 
         @Override
@@ -153,5 +170,7 @@ import java.util.Locale;
         public void onBackPressed() {
             // Do Here what ever you want do on back press;
         }
+
+
 
 }

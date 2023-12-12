@@ -63,7 +63,7 @@ public class Oznamy extends MainActivity {
                     @Override
                     public void run() {
 
-                        CustomModel customModel = new CustomModel(-1,currentDate,notification.getTitle(),notification.getBody());
+                      CustomModel customModel = new CustomModel(-1,currentDate,notification.getTitle(),notification.getBody());
                         DataBaseHelper dataBaseHelper = new DataBaseHelper(Oznamy.this);
                         boolean b = dataBaseHelper.addOne(customModel);
                         Intent intent = new Intent(Oznamy.this, MainActivity.class);
