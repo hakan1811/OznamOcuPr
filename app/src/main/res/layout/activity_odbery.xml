@@ -46,9 +46,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:enabled="true"
             android:height="48dp"
+            android:enabled="true"
+            android:scrollbarSize="4dp"
             android:text="Všetky oznamy"
+            android:textIsSelectable="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         <Switch
