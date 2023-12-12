@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Map;
 
 public class NotificationService  implements OneSignal.OSRemoteNotificationReceivedHandler{
     String currentDate = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault()).format(new Date());
@@ -29,19 +30,11 @@ public class NotificationService  implements OneSignal.OSRemoteNotificationRecei
     @Override
     public void remoteNotificationReceived(Context context, OSNotificationReceivedEvent osNotificationReceivedEvent) {
         OSNotification notification = osNotificationReceivedEvent.getNotification();
-       Intent intent = new Intent(NotificationService.ACTION_NOTIFICATION_RECIVED);
+       /*Intent intent = new Intent(NotificationService.ACTION_NOTIFICATION_RECIVED);
        intent.putExtra("date",currentDate);
        intent.putExtra("title", notification.getTitle());
        intent.putExtra("body",notification.getBody());
-       LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-        /*SharedPreferences settings = context.getSharedPreferences("Push_Values", 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString("date", currentDate);
-        editor.putString("title", notification.getTitle());
-        editor.putString("body", notification.getBody());
-        editor.apply();
-        editor.commit();
-        editor.clear();*/
+       LocalBroadcastManager.getInstance(context).sendBroadcast(intent);*/
         osNotificationReceivedEvent.complete(notification);
 
 

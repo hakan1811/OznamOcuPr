@@ -14,7 +14,9 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:logo="@mipmap/ic_logo_prochot_new_round"
-        app:title="eRozhlas OÚ Prochot"
+        app:title="eRozhlas"
+        app:subtitle="OÚ PROCHOT"
+        app:subtitleTextColor="#FAE100"
         app:titleTextColor="#FAE100">
 
 
