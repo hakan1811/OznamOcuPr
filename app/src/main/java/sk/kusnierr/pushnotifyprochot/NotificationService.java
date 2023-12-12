@@ -34,14 +34,6 @@ public class NotificationService  implements OneSignal.OSRemoteNotificationRecei
        intent.putExtra("title", notification.getTitle());
        intent.putExtra("body",notification.getBody());
        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-        /*SharedPreferences settings = context.getSharedPreferences("Push_Values", 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString("date", currentDate);
-        editor.putString("title", notification.getTitle());
-        editor.putString("body", notification.getBody());
-        editor.apply();
-        editor.commit();
-        editor.clear();*/
         osNotificationReceivedEvent.complete(notification);
 
 

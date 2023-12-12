@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -69,10 +71,22 @@ import java.util.Locale;
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-            /*SharedPreferences settings = getApplicationContext().getSharedPreferences("Push_Values", 0);
-            CustomModel customModel = new CustomModel(-1, settings.getString("date",String.valueOf(0)), settings.getString("title", String.valueOf(0)), settings.getString("body", String.valueOf(0)));
-            DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
-            boolean b = dataBaseHelper.addOne(customModel);*/
+            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+            // first time run?
+            if (pref.getBoolean("firstTimeRun", true)) {
+
+                // start the preferences activity
+                startActivity(new Intent(getBaseContext(), Odbery.class));
+
+                //get the preferences editor
+                SharedPreferences.Editor editor = pref.edit();
+
+                // avoid for next run
+                editor.putBoolean("firstTimeRun", false);
+                editor.commit();
+            }
+
 
             IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(NotificationService.ACTION_NOTIFICATION_RECIVED);

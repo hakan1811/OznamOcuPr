@@ -11,7 +11,7 @@
         android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_logo_prochot1_round"
-        android:label="Obec Prochot"
+        android:label="eRozhlas OÚ Prochot"
         android:roundIcon="@mipmap/ic_logo_prochot1_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OznamOcuPr"

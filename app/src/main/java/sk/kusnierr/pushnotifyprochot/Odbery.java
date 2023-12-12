@@ -2,6 +2,7 @@ package sk.kusnierr.pushnotifyprochot;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
@@ -9,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 
 public class Odbery extends MainActivity  {
     private Toolbar tb;
+    SharedPreferences sharedPrefs;
 
     //Switch All, oznamOU, Predaj, Poruchy;
     @Override
@@ -22,17 +24,19 @@ public class Odbery extends MainActivity  {
         Switch oznamOU = (Switch) findViewById(R.id.switchOznamyOU);
         Switch predaj = (Switch) findViewById(R.id.switchPredaj);
         Switch poruchy = (Switch) findViewById(R.id.switchPoruchy);
-        SharedPreferences sharedPrefs = getSharedPreferences("allSw", MODE_PRIVATE);
-        all.setChecked(sharedPrefs.getBoolean("allSwSw", true));
-        if (all.isChecked())
-        {
-            oznamOU.setEnabled(false);
-            predaj.setEnabled(false);
-            poruchy.setEnabled(false);
-        }
-        oznamOU.setChecked(sharedPrefs.getBoolean("oznamySwSw", true));
-        predaj.setChecked(sharedPrefs.getBoolean("predajSwSw", true));
-        poruchy.setChecked(sharedPrefs.getBoolean("poruchySwSw", true));
+
+        sharedPrefs = getSharedPreferences("allSw", MODE_PRIVATE);
+            all.setChecked(sharedPrefs.getBoolean("allSwSw", true));
+            if (all.isChecked()) {
+                oznamOU.setEnabled(false);
+                predaj.setEnabled(false);
+                poruchy.setEnabled(false);
+            }
+
+            oznamOU.setChecked(sharedPrefs.getBoolean("oznamySwSw", true));
+            predaj.setChecked(sharedPrefs.getBoolean("predajSwSw", true));
+            poruchy.setChecked(sharedPrefs.getBoolean("poruchySwSw", true));
+
         all.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton toggleButton, boolean isChecked) {
