@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
 import android.widget.TextView;
 
 import com.onesignal.OSNotification;
@@ -33,7 +34,7 @@ public class Detail extends MainActivity {
         Date = (TextView)findViewById(R.id.textViewDate);
         Header = (TextView)findViewById(R.id.textViewHeader);
         Date.setGravity(Gravity.CENTER);
-        Header.setText("Detail:");
+        //Header.setText("Detail:");
         Date.setText(getIntent().getStringExtra("date"));
         Title.setText(getIntent().getStringExtra("title"));
         Message.setText(getIntent().getStringExtra("body"));
@@ -63,6 +64,17 @@ public class Detail extends MainActivity {
                 osNotificationOpenedResult.getNotification();
             }
         });
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_item,menu);
+        return true;
+    }
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press;
+        //super.onBackPressed();
 
     }
 }

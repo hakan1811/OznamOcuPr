@@ -36,29 +36,6 @@ import java.util.Locale;
     TextView Title,Message,Date;
     int count = 0;
 
-
-  /*   BroadcastReceiver notificationReciver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            count++;
-            if (intent!=null && intent.getAction() != null){
-                if (intent.getAction().equals(NotificationService.ACTION_NOTIFICATION_RECIVED)){
-                    *//*if (count == 1) {
-                        CustomModel customModel = new CustomModel(-1, intent.getStringExtra("date"), intent.getStringExtra("title"), intent.getStringExtra("body"));
-                        DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
-                        boolean b = dataBaseHelper.addOne(customModel);
-                    }*//*
-                    Date.setText(intent.getStringExtra("date"));
-                    Date.setGravity(Gravity.LEFT);
-                    Title.setText(intent.getStringExtra("title"));
-                    Title.setGravity(Gravity.LEFT);
-                    Message.setText(intent.getStringExtra("body"));
-
-                }
-            }
-
-        }
-    };*/
         @Override
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,9 +65,6 @@ import java.util.Locale;
             }
 
 
-            /*IntentFilter intentFilter = new IntentFilter();
-            intentFilter.addAction(NotificationService.ACTION_NOTIFICATION_RECIVED);
-            LocalBroadcastManager.getInstance(this).registerReceiver(notificationReciver, intentFilter);*/
 
         Title = (TextView)findViewById(R.id.textPredmet);
         Message = (TextView)findViewById(R.id.textMessage);
@@ -139,12 +113,6 @@ import java.util.Locale;
         return true;
     }
 
-   /*  @Override
-        protected void onDestroy() {
-            super.onDestroy();
-           LocalBroadcastManager.getInstance(this).unregisterReceiver(notificationReciver);
-           count = 0;
-        }*/
 
         @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
