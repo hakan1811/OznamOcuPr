@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.view.Menu;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
@@ -52,7 +53,7 @@ public class Kontakty extends MainActivity {
                        CustomModel customModel = new CustomModel(-1,currentDate,notification.getTitle(),notification.getBody());
                        DataBaseHelper dataBaseHelper = new DataBaseHelper(Kontakty.this);
                        boolean b = dataBaseHelper.addOne(customModel);
-                        Intent intent = new Intent(Kontakty.this, MainActivity.class);
+                        Intent intent = new Intent(Kontakty.this, Detail.class);
                         intent.putExtra("date", currentDate);
                         intent.putExtra("title", notification.getTitle());
                         intent.putExtra("body", notification.getBody());
@@ -65,9 +66,14 @@ public class Kontakty extends MainActivity {
 
     }
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_item,menu);
+        return true;
+    }
+    @Override
     public void onBackPressed() {
         // Do Here what ever you want do on back press;
-        super.onBackPressed();
+        //super.onBackPressed();
     }
 
 }

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -66,7 +67,7 @@ public class Oznamy extends MainActivity {
                       CustomModel customModel = new CustomModel(-1,currentDate,notification.getTitle(),notification.getBody());
                         DataBaseHelper dataBaseHelper = new DataBaseHelper(Oznamy.this);
                         boolean b = dataBaseHelper.addOne(customModel);
-                        Intent intent = new Intent(Oznamy.this, MainActivity.class);
+                        Intent intent = new Intent(Oznamy.this, Detail.class);
                         intent.putExtra("date", currentDate);
                         intent.putExtra("title", notification.getTitle());
                         intent.putExtra("body", notification.getBody());
@@ -144,6 +145,11 @@ public class Oznamy extends MainActivity {
         adapter = new SimpleCursorAdapter(this, layoutstyle,row,column, xml_id, 0);
         lv_oznamyList.setAdapter(adapter);
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_item,menu);
+        return true;
     }
     @Override
     public void onBackPressed() {

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,29 +36,6 @@ import java.util.Locale;
     TextView Title,Message,Date;
     int count = 0;
 
-
-     BroadcastReceiver notificationReciver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            count++;
-            if (intent!=null && intent.getAction() != null){
-                if (intent.getAction().equals(NotificationService.ACTION_NOTIFICATION_RECIVED)){
-                    /*if (count == 1) {
-                        CustomModel customModel = new CustomModel(-1, intent.getStringExtra("date"), intent.getStringExtra("title"), intent.getStringExtra("body"));
-                        DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
-                        boolean b = dataBaseHelper.addOne(customModel);
-                    }*/
-                    Date.setText(intent.getStringExtra("date"));
-                    Date.setGravity(Gravity.LEFT);
-                    Title.setText(intent.getStringExtra("title"));
-                    Title.setGravity(Gravity.LEFT);
-                    Message.setText(intent.getStringExtra("body"));
-
-                }
-            }
-
-        }
-    };
         @Override
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,32 +48,34 @@ import java.util.Locale;
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-            /*SharedPreferences settings = getApplicationContext().getSharedPreferences("Push_Values", 0);
-            CustomModel customModel = new CustomModel(-1, settings.getString("date",String.valueOf(0)), settings.getString("title", String.valueOf(0)), settings.getString("body", String.valueOf(0)));
-            DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
-            boolean b = dataBaseHelper.addOne(customModel);*/
+            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-            IntentFilter intentFilter = new IntentFilter();
-            intentFilter.addAction(NotificationService.ACTION_NOTIFICATION_RECIVED);
-            LocalBroadcastManager.getInstance(this).registerReceiver(notificationReciver, intentFilter);
+            // first time run?
+            if (pref.getBoolean("firstTimeRun", true)) {
+
+                // start the preferences activity
+                startActivity(new Intent(getBaseContext(), Odbery.class));
+
+                //get the preferences editor
+                SharedPreferences.Editor editor = pref.edit();
+
+                // avoid for next run
+                editor.putBoolean("firstTimeRun", false);
+                editor.commit();
+            }
+
+
 
         Title = (TextView)findViewById(R.id.textPredmet);
         Message = (TextView)findViewById(R.id.textMessage);
         Date = (TextView)findViewById(R.id.textDate);
         // nastavit domovsku obrazovku
-            Bundle extras = getIntent().getExtras();
-            if (extras == null){
+
                 Date.setGravity(Gravity.CENTER);
                 Title.setGravity(Gravity.CENTER);
                 Date.setText("Dnes je " + currentDate1 + "." );
-                Title.setText("Vitajte v testovacej verzii aplikácie eRozhlas OÚ Prochot.");}
-            else {
-                Title.setGravity(Gravity.LEFT);
-                Date.setText(getIntent().getStringExtra("date"));
-                Title.setText(getIntent().getStringExtra("title"));
-                Message.setText(getIntent().getStringExtra("body"));
-                extras.clear();
-            }
+                Title.setText("Vitajte v testovacej verzii aplikácie eRozhlas OÚ Prochot.");
+
 
 
         OneSignal.setNotificationOpenedHandler(new OneSignal.OSNotificationOpenedHandler() {
@@ -102,20 +83,20 @@ import java.util.Locale;
             @Override
             public void notificationOpened(OSNotificationOpenedResult osNotificationOpenedResult) {
 
-                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                    startActivity(intent);
+
                     OSNotification notification = osNotificationOpenedResult.getNotification();
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Date.setText(currentDate);
-                            Date.setGravity(Gravity.LEFT);
-                            Title.setText(notification.getTitle());
-                            Title.setGravity(Gravity.LEFT);
-                            Message.setText(notification.getBody());
+
                            CustomModel customModel = new CustomModel(-1,currentDate,notification.getTitle(),notification.getBody());
                            DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
                             boolean b = dataBaseHelper.addOne(customModel);
+                            Intent intent = new Intent(MainActivity.this, Detail.class);
+                            intent.putExtra("date", currentDate);
+                            intent.putExtra("title", notification.getTitle());
+                            intent.putExtra("body", notification.getBody());
+                            startActivity(intent);
 
                         }
                     });
@@ -132,12 +113,6 @@ import java.util.Locale;
         return true;
     }
 
-     @Override
-        protected void onDestroy() {
-            super.onDestroy();
-           LocalBroadcastManager.getInstance(this).unregisterReceiver(notificationReciver);
-           count = 0;
-        }
 
         @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -156,6 +131,12 @@ import java.util.Locale;
             startActivity(new Intent(MainActivity.this,Kontakty.class));
             return true;
         }
+            if (item_id == R.id.odbery){
+                Toast.makeText(this,"Vybral si odbery",Toast.LENGTH_SHORT).show();
+                setContentView(R.layout.activity_odbery);
+                startActivity(new Intent(MainActivity.this,Odbery.class));
+                return true;
+            }
         if (item_id == R.id.home){
             Toast.makeText(this,"Návrat na domácu obrazovku",Toast.LENGTH_SHORT).show();
             //setContentView(R.layout.activity_main);
