@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,10 +15,12 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationOpenedResult;
 import com.onesignal.OneSignal;
@@ -43,9 +46,36 @@ public class Oznamy extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oznamy);
         lv_oznamyList = findViewById(R.id.listOznamy);
-        tb = findViewById(R.id.toolbar);
-        setSupportActionBar(tb);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //tb = findViewById(R.id.toolbar);
+        //setSupportActionBar(tb);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setSelectedItemId(R.id.test_oznamy);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int id = (item.getItemId());
+            if (id == R.id.test_oznamy) {
+                return true;}
+            if (id == R.id.test_home){
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                finish();
+                return true;}
+            if (id == R.id.test_odbery){
+                startActivity(new Intent(getApplicationContext(), Odbery.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                finish();
+                return true;}
+            if (id == R.id.test_kontakty){
+                startActivity(new Intent(getApplicationContext(), Kontakty.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                finish();
+                return true;}
+            else {
+                return false;
+            }
+
+        });
+
         Datum = (TextView)findViewById(R.id.mtrl_list_item_date);
         Predmet = (TextView)findViewById(R.id.mtrl_list_item_title);
         Body = (TextView)findViewById(R.id.mtrl_list_item_body);
@@ -146,16 +176,34 @@ public class Oznamy extends MainActivity {
         lv_oznamyList.setAdapter(adapter);
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_item,menu);
-        return true;
-    }
-    @Override
-    public void onBackPressed() {
-        // Do Here what ever you want do on back press;
-        super.onBackPressed();
-
-    }
+   /* @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int item_id = item.getItemId();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setSelectedItemId(R.id.bottom_oznamy);
+        if (item_id == R.id.bottom_home){
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            finish();
+            return true;
+        }
+        if (item_id == R.id.bottom_oznamy){
+            return true;
+        }
+        if (item_id == R.id.bottom_odbery){
+            startActivity(new Intent(getApplicationContext(), Odbery.class));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            finish();
+            return true;
+        }
+        if (item_id == R.id.bottom_kontakty){
+            startActivity(new Intent(getApplicationContext(), Kontakty.class));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            finish();
+            return true;
+        }
+        //return false;
+        return super.onOptionsItemSelected(item);
+    }*/
 
 }

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationOpenedResult;
 import com.onesignal.OneSignal;
@@ -29,9 +30,36 @@ public class Odbery extends MainActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_odbery);
-        tb = findViewById(R.id.toolbar);
-        setSupportActionBar(tb);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setSelectedItemId(R.id.test_odbery);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int id = (item.getItemId());
+            if (id == R.id.test_odbery) {
+                return true;}
+            if (id == R.id.test_home){
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                finish();
+                return true;}
+            if (id == R.id.test_oznamy){
+                startActivity(new Intent(getApplicationContext(), Oznamy.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                finish();
+                return true;}
+            if (id == R.id.test_kontakty){
+                startActivity(new Intent(getApplicationContext(), Kontakty.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                finish();
+                return true;}
+            else {
+                return false;
+            }
+
+        });
+        //tb = findViewById(R.id.toolbar);
+        //setSupportActionBar(tb);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
         Switch all = (Switch) findViewById(R.id.switchAll);
         Switch oznamOU = (Switch) findViewById(R.id.switchOznamyOU);
         Switch predaj = (Switch) findViewById(R.id.switchPredaj);
@@ -118,16 +146,16 @@ public class Odbery extends MainActivity  {
                     editor.putBoolean("oznamySwSw", true);
                     editor.commit();
                     OneSignal.sendTag("oznamy", "1");
-                    OneSignal.sendTag("predaj", "2");
-                    OneSignal.sendTag("poruchy", "3");
+                    //OneSignal.sendTag("predaj", "2");
+                    //OneSignal.sendTag("poruchy", "3");
                 }
                 else {
                     SharedPreferences.Editor editor = getSharedPreferences("allSw", MODE_PRIVATE).edit();
                     editor.putBoolean("oznamySwSw", false);
                     editor.commit();
                     OneSignal.deleteTag("oznamy");
-                    OneSignal.deleteTag("predaj");
-                    OneSignal.deleteTag("poruchy");
+                    //OneSignal.deleteTag("predaj");
+                    //OneSignal.deleteTag("poruchy");
                 }
                 if (predaj.isChecked() && poruchy.isChecked() && oznamOU.isChecked()){
                     all.setChecked(true);

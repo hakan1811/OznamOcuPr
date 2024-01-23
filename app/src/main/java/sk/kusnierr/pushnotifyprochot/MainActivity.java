@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationOpenedResult;
 import com.onesignal.OSNotificationReceivedEvent;
@@ -40,13 +41,39 @@ import java.util.Locale;
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //  imageLogo = (ImageView) findViewById(R.id.imageViewLogo);
-        //.setAlpha(50);
-        Toolbar tb = (Toolbar)findViewById(R.id.toolbar);
+
+            BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+            bottomNavigationView.setSelectedItemId(R.id.test_home);
+            bottomNavigationView.setOnItemSelectedListener(item -> {
+                int id = (item.getItemId());
+                    if (id == R.id.test_home) {
+                        return true;}
+                    if (id == R.id.test_oznamy){
+                        startActivity(new Intent(getApplicationContext(), Oznamy.class));
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                        finish();
+                        return true;}
+                    if (id == R.id.test_odbery){
+                        startActivity(new Intent(getApplicationContext(), Odbery.class));
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                        finish();
+                        return true;}
+                    if (id == R.id.test_kontakty){
+                        startActivity(new Intent(getApplicationContext(), Kontakty.class));
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                        finish();
+                        return true;}
+                else {
+                        return false;
+                    }
+
+            });
+
+        //Toolbar tb = (Toolbar)findViewById(R.id.toolbar);
         String currentDate = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault()).format(new Date());
         String currentDate1 = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(new Date());
-        setSupportActionBar(tb);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //setSupportActionBar(tb);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
             SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
@@ -62,6 +89,9 @@ import java.util.Locale;
                 // avoid for next run
                 editor.putBoolean("firstTimeRun", false);
                 editor.commit();
+                OneSignal.sendTag("oznamy", "1");
+                OneSignal.sendTag("predaj", "2");
+                OneSignal.sendTag("poruchy", "3");
             }
 
 
@@ -107,50 +137,44 @@ import java.util.Locale;
         });
 
     }
-    @Override
+  /*  @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_item,menu);
         return true;
-    }
+    }*/
 
+  /*
 
-        @Override
+   @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int item_id = item.getItemId();
-
-        if (item_id == R.id.oznamy){
-            Toast.makeText(this,"Vybral si oznamy",Toast.LENGTH_SHORT).show();
-                    setContentView(R.layout.activity_oznamy);
-                    Intent intent = new Intent(MainActivity.this, Oznamy.class);
-                    startActivity(intent);
-                    return true;
-        }
-        if (item_id == R.id.kontakt){
-            Toast.makeText(this,"Vybral si kontakty",Toast.LENGTH_SHORT).show();
-            setContentView(R.layout.activity_kontakty);
-            startActivity(new Intent(MainActivity.this,Kontakty.class));
+       BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+       bottomNavigationView.setSelectedItemId(R.id.bottom_home);
+        if (item_id == R.id.bottom_home){
+            //Toast.makeText(this,"Vybral si home",Toast.LENGTH_SHORT).show();
             return true;
         }
-            if (item_id == R.id.odbery){
-                Toast.makeText(this,"Vybral si odbery",Toast.LENGTH_SHORT).show();
-                setContentView(R.layout.activity_odbery);
-                startActivity(new Intent(MainActivity.this,Odbery.class));
+        if (item_id == R.id.bottom_oznamy){
+            startActivity(new Intent(getApplicationContext(), Oznamy.class));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            finish();
+            return true;
+        }
+            if (item_id == R.id.bottom_odbery){
+                startActivity(new Intent(getApplicationContext(), Odbery.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                finish();
                 return true;
             }
-        if (item_id == R.id.home){
-            Toast.makeText(this,"Návrat na domácu obrazovku",Toast.LENGTH_SHORT).show();
-            //setContentView(R.layout.activity_main);
-            Intent intent = new Intent(MainActivity.this, MainActivity.class);
-            startActivity(intent);
+        if (item_id == R.id.bottom_kontakty){
+            startActivity(new Intent(getApplicationContext(), Kontakty.class));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            finish();
             return true;
         }
-
+        //return false;
         return super.onOptionsItemSelected(item);
-    }
-        @Override
-        public void onBackPressed() {
-            // Do Here what ever you want do on back press;
-        }
+    }*/
 
 
 

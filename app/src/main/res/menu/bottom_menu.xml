@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/test_home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Home" />
+    <item
+        android:id="@+id/test_oznamy"
+        android:icon="@drawable/baseline_message_24"
+        android:title="Oznamy" />
+    <item
+        android:id="@+id/test_odbery"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="Odbery" />
+    <item
+        android:id="@+id/test_kontakty"
+        android:icon="@drawable/baseline_contact_mail_24"
+        android:title="Kontakty" />
+</menu>

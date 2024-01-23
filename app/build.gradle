@@ -13,8 +13,8 @@ android {
         applicationId "sk.kusnierr.pushnotifyprochot"
         minSdk 22
         targetSdk 34
-        versionCode 1
-        versionName "1.4"
+        versionCode 3
+        versionName "1.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
