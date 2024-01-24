@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="velkostTitulky" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">25sp</item>
+        <!-- Iné atribúty podľa vašich požiadaviek -->
+    </style>
+    <style name="velkostSubTitulky" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">14sp</item>
+        <!-- Iné atribúty podľa vašich požiadaviek -->
+    </style>
+</resources>

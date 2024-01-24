@@ -49,7 +49,7 @@ import java.util.Locale;
                     if (id == R.id.test_home) {
                         return true;}
                     if (id == R.id.test_oznamy){
-                        startActivity(new Intent(getApplicationContext(), Oznamy.class));
+                        startActivity(new Intent(getApplicationContext(),Oznamy.class));
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         finish();
                         return true;}

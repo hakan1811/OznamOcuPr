@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,6 +47,14 @@ public class Oznamy extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oznamy);
         lv_oznamyList = findViewById(R.id.listOznamy);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int screenHeight = displayMetrics.heightPixels;
+
+        // Nastavenie výšky ListView na 60% výšky displeja (môžete upraviť podľa potreby)
+        int listViewHeight = (int) (0.6 * screenHeight);
+        lv_oznamyList.getLayoutParams().height = listViewHeight;
+        lv_oznamyList.requestLayout();
         //tb = findViewById(R.id.toolbar);
         //setSupportActionBar(tb);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);

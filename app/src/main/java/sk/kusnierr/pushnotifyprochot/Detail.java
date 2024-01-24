@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.util.Linkify;
 import android.view.Gravity;
 import android.view.Menu;
 import android.widget.TextView;
@@ -68,6 +69,7 @@ public class Detail extends MainActivity {
         Date.setText(getIntent().getStringExtra("date"));
         Title.setText(getIntent().getStringExtra("title"));
         Message.setText(getIntent().getStringExtra("body"));
+        Linkify.addLinks(Message, Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES);
 
         OneSignal.setNotificationOpenedHandler(new OneSignal.OSNotificationOpenedHandler() {
             //OSNotificationOpenedResult osNotificationOpenedResult = new OSNotificationOpenedResult(str);

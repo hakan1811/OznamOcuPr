@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
     <include
         layout="@layout/toolbar_layout"
         android:layout_width="match_parent"
@@ -59,8 +67,8 @@
         android:fontFamily="sans-serif"
         android:paddingEnd="16dp"
         android:text="TextView"
-        android:layout_marginLeft="25px"
-        android:layout_marginVertical="20px"
+        android:layout_marginLeft="25dp"
+        android:layout_marginVertical="10dp"
         android:textAppearance="?attr/textAppearanceBody2"
         android:textSize="16sp"
         android:textStyle="bold" />
@@ -70,15 +78,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="25px"
+        android:layout_marginLeft="25dp"
         android:paddingEnd="16dp"
         android:text="TextView"
         android:textAppearance="?attr/textAppearanceBody2"
         android:textSize="16sp" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="50dp">
+            </RelativeLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigation"
@@ -91,15 +102,12 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/bottom_background"
             android:elevation="5dp"
-            app:itemIconSize="40dp"
+            app:itemIconSize="30dp"
             app:itemIconTint="@drawable/item_selector"
             app:itemRippleColor="@android:color/transparent"
-            app:labelVisibilityMode="unlabeled"
+            app:labelVisibilityMode="selected"
             style="@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/bottom_menu" />
 
-    </RelativeLayout>
-
-
-</LinearLayout>
+</RelativeLayout>

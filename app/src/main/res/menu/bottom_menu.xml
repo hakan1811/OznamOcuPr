@@ -3,7 +3,7 @@
     <item
         android:id="@+id/test_home"
         android:icon="@drawable/baseline_home_24"
-        android:title="Home" />
+        android:title="Domov" />
     <item
         android:id="@+id/test_oznamy"
         android:icon="@drawable/baseline_message_24"
@@ -11,7 +11,7 @@
     <item
         android:id="@+id/test_odbery"
         android:icon="@drawable/baseline_settings_24"
-        android:title="Odbery" />
+        android:title="Nastavenie" />
     <item
         android:id="@+id/test_kontakty"
         android:icon="@drawable/baseline_contact_mail_24"

@@ -105,10 +105,10 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/bottom_background"
             android:elevation="5dp"
-            app:itemIconSize="40dp"
+            app:itemIconSize="30dp"
             app:itemIconTint="@drawable/item_selector"
             app:itemRippleColor="@android:color/transparent"
-            app:labelVisibilityMode="unlabeled"
+            app:labelVisibilityMode="selected"
             style="@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/bottom_menu" />
